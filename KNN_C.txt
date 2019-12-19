@@ -1,0 +1,140 @@
+//
+//
+// K nearest neighbours algorithm
+//
+// https://www.onlinegdb.com/online_c++_compiler
+//
+//
+#include <bits/stdc++.h> 
+using namespace std; 
+
+struct Point 
+{ 
+	// Class of point 
+	int val; 
+	
+	// Co-ordinate of point 
+	double x, y; 
+}; 
+
+// This function classifies the point p using 
+// r k neareast neighbour algorithm. It assumes only 
+// two groups and returns 0 if p belongs to class 0, else 
+// 1 (belongs to class 1). 
+int rNN(Point arr[], int n, float r, Point p) 
+{ 
+	// frequency of group 0 
+	int freq1 = 0; 
+	// frequency of group 1 
+	int freq2 = 0; 
+
+	// Check if the distance is less than r 
+	for (int i = 0; i < n; i++) 
+	{ 
+
+		if ((sqrt((arr[i].x - p.x) * (arr[i].x - p.x) + 
+		(arr[i].y - p.y) * (arr[i].y - p.y))) <= r) 
+		{ 
+			if (arr[i].val == 0) 
+				freq1++; 
+			else if (arr[i].val == 1) 
+				freq2++; 
+		} 
+	} 
+	return (freq1 > freq2 ? 0 : 1); 
+} 
+
+// Driver code 
+int main() 
+{ 
+	// Number of data points 
+	int n = 18; 
+	Point arr[n]; 
+
+	arr[0].x = 158; 
+	arr[0].y = 58; 
+	arr[0].val = 0; 
+
+	arr[1].x = 158; 
+	arr[1].y = 59; 
+	arr[1].val = 0; 
+
+	arr[2].x = 158; 
+	arr[2].y = 63; 
+	arr[2].val = 0; 
+
+	arr[3].x = 160; 
+	arr[3].y = 59; 
+	arr[3].val = 0; 
+
+	arr[4].x = 160; 
+	arr[4].y = 60; 
+	arr[4].val = 0; 
+
+	arr[5].x = 163; 
+	arr[5].y = 60; 
+	arr[5].val = 0; 
+
+	arr[6].x = 163; 
+	arr[6].y = 61; 
+	arr[6].val = 0; 
+
+	arr[7].x = 160; 
+	arr[7].y = 64; 
+	arr[7].val = 1; 
+
+	arr[8].x = 163; 
+	arr[8].y = 64; 
+	arr[8].val = 1; 
+
+	arr[9].x = 165; 
+	arr[9].y = 61; 
+	arr[9].val = 1; 
+	
+	arr[9].x = 165; 
+	arr[9].y = 62; 
+	arr[9].val = 1; 
+
+	arr[9].x = 165; 
+	arr[9].y = 65; 
+	arr[9].val = 1; 
+
+	arr[9].x = 168; 
+	arr[9].y = 62; 
+	arr[9].val = 1; 
+
+	arr[9].x = 168; 
+	arr[9].y = 63; 
+	arr[9].val = 1; 
+
+	arr[9].x = 168; 
+	arr[9].y = 66; 
+	arr[9].val = 1; 
+
+	arr[9].x = 170; 
+	arr[9].y = 63; 
+	arr[9].val = 1; 
+
+	arr[9].x = 170; 
+	arr[9].y = 64; 
+	arr[9].val = 1; 
+
+	arr[9].x = 170; 
+	arr[9].y = 68; 
+	arr[9].val = 1; 
+
+
+
+	// Query point 
+	Point p; 
+	//p.x = 161; 
+	//p.y = 61; 
+	p.x = 169; 
+	p.y = 63; 
+
+	// Parameter to decide the class of the query point 
+	float r = 2.2; 
+	printf("The value classified to query point"
+		" is: %d.\n", rNN(arr, n, r, p)); 
+	return 0; 
+} 
